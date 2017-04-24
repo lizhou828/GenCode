@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liz.mapper.LoginLogMapper">
+    <!--<cache type="com.yyw.yhyc.cache.LoggingRedisCache"-->
+           <!--flushInterval="86400000" size="1024000">-->
+    <!--</cache>-->
+    <resultMap id="LoginLogResultMapper" type="com.liz.model.LoginLog">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="login_ip" property="loginIp"/>
+        <result column="login_time" property="loginTime"/>
+        <result column="referer" property="referer"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="browser_type" property="browserType"/>
+        <result column="login_url" property="loginUrl"/>
+        <result column="user_agent" property="userAgent"/>
+    </resultMap>
+
+    <sql id="commonColumns">
+        id,
+        user_id,
+        user_name,
+        login_ip,
+        login_time,
+        referer,
+        device_type,
+        browser_type,
+        login_url,
+        user_agent
+    </sql>
+
+    <sql id="commonColumnsNotPK">
+        user_id,
+        user_name,
+        login_ip,
+        login_time,
+        referer,
+        device_type,
+        browser_type,
+        login_url,
+        user_agent
+    </sql>
+
+
+    <sql id="commonProcessDateColumns">
+    id,
+    user_id,
+    user_name,
+    login_ip,
+    login_time,
+    referer,
+    device_type,
+    browser_type,
+    login_url,
+    user_agent
+    </sql>
+
+    <sql id="commonCondition">
+        <if test="userId!= null and userId!= ''">
+            AND user_id = #{userId}
+        </if>
+        <if test="userName!= null and userName!= ''">
+            AND user_name = #{userName}
+        </if>
+        <if test="loginIp!= null and loginIp!= ''">
+            AND login_ip = #{loginIp}
+        </if>
+        <if test="loginTime!= null and loginTime!= ''">
+            AND login_time = #{loginTime}
+        </if>
+        <if test="referer!= null and referer!= ''">
+            AND referer = #{referer}
+        </if>
+        <if test="deviceType!= null and deviceType!= ''">
+            AND device_type = #{deviceType}
+        </if>
+        <if test="browserType!= null and browserType!= ''">
+            AND browser_type = #{browserType}
+        </if>
+        <if test="loginUrl!= null and loginUrl!= ''">
+            AND login_url = #{loginUrl}
+        </if>
+        <if test="userAgent!= null and userAgent!= ''">
+            AND user_agent = #{userAgent}
+        </if>
+    </sql>
+
+
+    <insert id="save" parameterType="com.liz.model.LoginLog">
+        <![CDATA[ INSERT INTO t_login_log ( ]]> <include refid="commonColumnsNotPK"/>
+        <![CDATA[
+                ) VALUES (
+                #{userId},
+                #{userName},
+                #{loginIp},
+                #{loginTime},
+                #{referer},
+                #{deviceType},
+                #{browserType},
+                #{loginUrl},
+                #{userAgent}
+      ) ]]>
+    </insert>
+
+    <update id="update" parameterType="com.liz.model.LoginLog">
+        <![CDATA[ UPDATE t_login_log SET
+         id = #{id} ]]>
+
+        <if test="userId!= null and userId!= ''">
+            , user_id = #{userId}
+        </if>
+        <if test="userName!= null and userName!= ''">
+            , user_name = #{userName}
+        </if>
+        <if test="loginIp!= null and loginIp!= ''">
+            , login_ip = #{loginIp}
+        </if>
+        <if test="loginTime!= null and loginTime!= ''">
+            , login_time = #{loginTime}
+        </if>
+        <if test="referer!= null and referer!= ''">
+            , referer = #{referer}
+        </if>
+        <if test="deviceType!= null and deviceType!= ''">
+            , device_type = #{deviceType}
+        </if>
+        <if test="browserType!= null and browserType!= ''">
+            , browser_type = #{browserType}
+        </if>
+        <if test="loginUrl!= null and loginUrl!= ''">
+            , login_url = #{loginUrl}
+        </if>
+        <if test="userAgent!= null and userAgent!= ''">
+            , user_agent = #{userAgent}
+        </if>
+
+      <![CDATA[  WHERE id = #{id} ]]>
+    </update>
+
+
+    <delete id="deleteByPK" parameterType="java.lang.Integer">
+        <![CDATA[ DELETE FROM t_login_log
+        WHERE id = #{id} ]]>
+    </delete>
+
+    <delete id="deleteByPKeys" parameterType="map">
+        DELETE FROM t_login_log WHERE
+        <foreach collection="primaryKeys" index="index" item="id" open=" id IN(" separator="," close=") ">
+            ${id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="com.liz.model.LoginLog">
+        DELETE FROM t_login_log WHERE 1 = 1
+        <include refid="commonCondition"/>
+    </delete>
+
+    <select id="getByPK" parameterType="java.lang.Integer" resultMap="LoginLogResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_login_log WHERE id = #{id}
+    </select>
+
+    <select id="list" resultMap="LoginLogResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_login_log
+    </select>
+
+    <select id="listByProperty" parameterType="com.liz.model.LoginLog" resultMap="LoginLogResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_login_log WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByCount" parameterType="com.liz.model.LoginLog" resultType="int">
+        SELECT count(1) AS totalcount FROM t_login_log WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByPagination" parameterType="com.liz.model.LoginLog" resultMap="LoginLogResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_login_log WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+</mapper>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liz.mapper.MnItemMapper">
+    <!--<cache type="com.yyw.yhyc.cache.LoggingRedisCache"-->
+           <!--flushInterval="86400000" size="1024000">-->
+    <!--</cache>-->
+    <resultMap id="MnItemResultMapper" type="com.liz.model.MnItem">
+        <result column="item_id" property="itemId"/>
+        <result column="user_id" property="userId"/>
+        <result column="money" property="money"/>
+        <result column="type" property="type"/>
+        <result column="cate_id" property="cateId"/>
+        <result column="cate_name" property="cateName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="remark" property="remark"/>
+        <result column="item_name" property="itemName"/>
+        <result column="needful" property="needful"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="parent_cate_id" property="parentCateId"/>
+        <result column="parent_cate_name" property="parentCateName"/>
+        <result column="note_date" property="noteDate"/>
+    </resultMap>
+
+    <sql id="commonColumns">
+        item_id,
+        user_id,
+        money,
+        type,
+        cate_id,
+        cate_name,
+        create_time,
+        create_user,
+        remark,
+        item_name,
+        needful,
+        update_time,
+        update_user,
+        parent_cate_id,
+        parent_cate_name,
+        note_date
+    </sql>
+
+    <sql id="commonColumnsNotPK">
+        user_id,
+        money,
+        type,
+        cate_id,
+        cate_name,
+        create_time,
+        create_user,
+        remark,
+        item_name,
+        needful,
+        update_time,
+        update_user,
+        parent_cate_id,
+        parent_cate_name,
+        note_date
+    </sql>
+
+
+    <sql id="commonProcessDateColumns">
+    item_id,
+    user_id,
+    money,
+    type,
+    cate_id,
+    cate_name,
+    create_time,
+    create_user,
+    remark,
+    item_name,
+    needful,
+    update_time,
+    update_user,
+    parent_cate_id,
+    parent_cate_name,
+    note_date
+    </sql>
+
+    <sql id="commonCondition">
+        <if test="userId!= null and userId!= ''">
+            AND user_id = #{userId}
+        </if>
+        <if test="money!= null and money!= ''">
+            AND money = #{money}
+        </if>
+        <if test="type!= null and type!= ''">
+            AND type = #{type}
+        </if>
+        <if test="cateId!= null and cateId!= ''">
+            AND cate_id = #{cateId}
+        </if>
+        <if test="cateName!= null and cateName!= ''">
+            AND cate_name = #{cateName}
+        </if>
+        <if test="createTime!= null and createTime!= ''">
+            AND create_time = #{createTime}
+        </if>
+        <if test="createUser!= null and createUser!= ''">
+            AND create_user = #{createUser}
+        </if>
+        <if test="remark!= null and remark!= ''">
+            AND remark = #{remark}
+        </if>
+        <if test="itemName!= null and itemName!= ''">
+            AND item_name = #{itemName}
+        </if>
+        <if test="needful!= null and needful!= ''">
+            AND needful = #{needful}
+        </if>
+        <if test="updateTime!= null and updateTime!= ''">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="updateUser!= null and updateUser!= ''">
+            AND update_user = #{updateUser}
+        </if>
+        <if test="parentCateId!= null and parentCateId!= ''">
+            AND parent_cate_id = #{parentCateId}
+        </if>
+        <if test="parentCateName!= null and parentCateName!= ''">
+            AND parent_cate_name = #{parentCateName}
+        </if>
+        <if test="noteDate!= null and noteDate!= ''">
+            AND note_date = #{noteDate}
+        </if>
+    </sql>
+
+
+    <insert id="save" parameterType="com.liz.model.MnItem">
+        <![CDATA[ INSERT INTO t_mn_item ( ]]> <include refid="commonColumnsNotPK"/>
+        <![CDATA[
+                ) VALUES (
+                #{userId},
+                #{money},
+                #{type},
+                #{cateId},
+                #{cateName},
+                #{createTime},
+                #{createUser},
+                #{remark},
+                #{itemName},
+                #{needful},
+                #{updateTime},
+                #{updateUser},
+                #{parentCateId},
+                #{parentCateName},
+                #{noteDate}
+      ) ]]>
+    </insert>
+
+    <update id="update" parameterType="com.liz.model.MnItem">
+        <![CDATA[ UPDATE t_mn_item SET
+         item_id = #{itemId} ]]>
+
+        <if test="userId!= null and userId!= ''">
+            , user_id = #{userId}
+        </if>
+        <if test="money!= null and money!= ''">
+            , money = #{money}
+        </if>
+        <if test="type!= null and type!= ''">
+            , type = #{type}
+        </if>
+        <if test="cateId!= null and cateId!= ''">
+            , cate_id = #{cateId}
+        </if>
+        <if test="cateName!= null and cateName!= ''">
+            , cate_name = #{cateName}
+        </if>
+        <if test="createTime!= null and createTime!= ''">
+            , create_time = #{createTime}
+        </if>
+        <if test="createUser!= null and createUser!= ''">
+            , create_user = #{createUser}
+        </if>
+        <if test="remark!= null and remark!= ''">
+            , remark = #{remark}
+        </if>
+        <if test="itemName!= null and itemName!= ''">
+            , item_name = #{itemName}
+        </if>
+        <if test="needful!= null and needful!= ''">
+            , needful = #{needful}
+        </if>
+        <if test="updateTime!= null and updateTime!= ''">
+            , update_time = #{updateTime}
+        </if>
+        <if test="updateUser!= null and updateUser!= ''">
+            , update_user = #{updateUser}
+        </if>
+        <if test="parentCateId!= null and parentCateId!= ''">
+            , parent_cate_id = #{parentCateId}
+        </if>
+        <if test="parentCateName!= null and parentCateName!= ''">
+            , parent_cate_name = #{parentCateName}
+        </if>
+        <if test="noteDate!= null and noteDate!= ''">
+            , note_date = #{noteDate}
+        </if>
+
+      <![CDATA[  WHERE item_id = #{itemId} ]]>
+    </update>
+
+
+    <delete id="deleteByPK" parameterType="java.lang.Integer">
+        <![CDATA[ DELETE FROM t_mn_item
+        WHERE item_id = #{itemId} ]]>
+    </delete>
+
+    <delete id="deleteByPKeys" parameterType="map">
+        DELETE FROM t_mn_item WHERE
+        <foreach collection="primaryKeys" index="index" item="id" open=" item_id IN(" separator="," close=") ">
+            ${id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="com.liz.model.MnItem">
+        DELETE FROM t_mn_item WHERE 1 = 1
+        <include refid="commonCondition"/>
+    </delete>
+
+    <select id="getByPK" parameterType="java.lang.Integer" resultMap="MnItemResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_mn_item WHERE item_id = #{itemId}
+    </select>
+
+    <select id="list" resultMap="MnItemResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_mn_item
+    </select>
+
+    <select id="listByProperty" parameterType="com.liz.model.MnItem" resultMap="MnItemResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_mn_item WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByCount" parameterType="com.liz.model.MnItem" resultType="int">
+        SELECT count(1) AS totalcount FROM t_mn_item WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByPagination" parameterType="com.liz.model.MnItem" resultMap="MnItemResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_mn_item WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+</mapper>

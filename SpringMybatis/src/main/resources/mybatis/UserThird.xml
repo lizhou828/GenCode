@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liz.mapper.UserThirdMapper">
+    <!--<cache type="com.yyw.yhyc.cache.LoggingRedisCache"-->
+           <!--flushInterval="86400000" size="1024000">-->
+    <!--</cache>-->
+    <resultMap id="UserThirdResultMapper" type="com.liz.model.UserThird">
+        <result column="id" property="id"/>
+        <result column="userId" property="userId"/>
+        <result column="qq_number" property="qqNumber"/>
+        <result column="qq_ncik_name" property="qqNcikName"/>
+        <result column="qq_open_id" property="qqOpenId"/>
+        <result column="qq_portrait" property="qqPortrait"/>
+        <result column="weixin_open_id" property="weixinOpenId"/>
+        <result column="weixin_nick_nmae" property="weixinNickNmae"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="commonColumns">
+        id,
+        userId,
+        qq_number,
+        qq_ncik_name,
+        qq_open_id,
+        qq_portrait,
+        weixin_open_id,
+        weixin_nick_nmae,
+        create_time,
+        update_time
+    </sql>
+
+    <sql id="commonColumnsNotPK">
+        userId,
+        qq_number,
+        qq_ncik_name,
+        qq_open_id,
+        qq_portrait,
+        weixin_open_id,
+        weixin_nick_nmae,
+        create_time,
+        update_time
+    </sql>
+
+
+    <sql id="commonProcessDateColumns">
+    id,
+    userId,
+    qq_number,
+    qq_ncik_name,
+    qq_open_id,
+    qq_portrait,
+    weixin_open_id,
+    weixin_nick_nmae,
+    create_time,
+    update_time
+    </sql>
+
+    <sql id="commonCondition">
+        <if test="userId!= null and userId!= ''">
+            AND userId = #{userId}
+        </if>
+        <if test="qqNumber!= null and qqNumber!= ''">
+            AND qq_number = #{qqNumber}
+        </if>
+        <if test="qqNcikName!= null and qqNcikName!= ''">
+            AND qq_ncik_name = #{qqNcikName}
+        </if>
+        <if test="qqOpenId!= null and qqOpenId!= ''">
+            AND qq_open_id = #{qqOpenId}
+        </if>
+        <if test="qqPortrait!= null and qqPortrait!= ''">
+            AND qq_portrait = #{qqPortrait}
+        </if>
+        <if test="weixinOpenId!= null and weixinOpenId!= ''">
+            AND weixin_open_id = #{weixinOpenId}
+        </if>
+        <if test="weixinNickNmae!= null and weixinNickNmae!= ''">
+            AND weixin_nick_nmae = #{weixinNickNmae}
+        </if>
+        <if test="createTime!= null and createTime!= ''">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime!= null and updateTime!= ''">
+            AND update_time = #{updateTime}
+        </if>
+    </sql>
+
+
+    <insert id="save" parameterType="com.liz.model.UserThird">
+        <![CDATA[ INSERT INTO t_user_third ( ]]> <include refid="commonColumnsNotPK"/>
+        <![CDATA[
+                ) VALUES (
+                #{userId},
+                #{qqNumber},
+                #{qqNcikName},
+                #{qqOpenId},
+                #{qqPortrait},
+                #{weixinOpenId},
+                #{weixinNickNmae},
+                #{createTime},
+                #{updateTime}
+      ) ]]>
+    </insert>
+
+    <update id="update" parameterType="com.liz.model.UserThird">
+        <![CDATA[ UPDATE t_user_third SET
+         id = #{id} ]]>
+
+        <if test="userId!= null and userId!= ''">
+            , userId = #{userId}
+        </if>
+        <if test="qqNumber!= null and qqNumber!= ''">
+            , qq_number = #{qqNumber}
+        </if>
+        <if test="qqNcikName!= null and qqNcikName!= ''">
+            , qq_ncik_name = #{qqNcikName}
+        </if>
+        <if test="qqOpenId!= null and qqOpenId!= ''">
+            , qq_open_id = #{qqOpenId}
+        </if>
+        <if test="qqPortrait!= null and qqPortrait!= ''">
+            , qq_portrait = #{qqPortrait}
+        </if>
+        <if test="weixinOpenId!= null and weixinOpenId!= ''">
+            , weixin_open_id = #{weixinOpenId}
+        </if>
+        <if test="weixinNickNmae!= null and weixinNickNmae!= ''">
+            , weixin_nick_nmae = #{weixinNickNmae}
+        </if>
+        <if test="createTime!= null and createTime!= ''">
+            , create_time = #{createTime}
+        </if>
+        <if test="updateTime!= null and updateTime!= ''">
+            , update_time = #{updateTime}
+        </if>
+
+      <![CDATA[  WHERE id = #{id} ]]>
+    </update>
+
+
+    <delete id="deleteByPK" parameterType="java.lang.Integer">
+        <![CDATA[ DELETE FROM t_user_third
+        WHERE id = #{id} ]]>
+    </delete>
+
+    <delete id="deleteByPKeys" parameterType="map">
+        DELETE FROM t_user_third WHERE
+        <foreach collection="primaryKeys" index="index" item="id" open=" id IN(" separator="," close=") ">
+            ${id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="com.liz.model.UserThird">
+        DELETE FROM t_user_third WHERE 1 = 1
+        <include refid="commonCondition"/>
+    </delete>
+
+    <select id="getByPK" parameterType="java.lang.Integer" resultMap="UserThirdResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_user_third WHERE id = #{id}
+    </select>
+
+    <select id="list" resultMap="UserThirdResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_user_third
+    </select>
+
+    <select id="listByProperty" parameterType="com.liz.model.UserThird" resultMap="UserThirdResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_user_third WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByCount" parameterType="com.liz.model.UserThird" resultType="int">
+        SELECT count(1) AS totalcount FROM t_user_third WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByPagination" parameterType="com.liz.model.UserThird" resultMap="UserThirdResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_user_third WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+</mapper>

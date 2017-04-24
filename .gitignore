@@ -1,4 +1,9 @@
+/.idea
+/target
+/out
+
 *.class
+*.iml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -10,3 +15,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+SpringBoot-Template/src/
+SpringBoot/.gitignore
+SpringBoot/README.md
+SpringBoot/pom.xml
+SpringBoot/src/main/resources/
+SpringBoot/src/main/webapp/WEB-INF/
+SpringBoot/src/main/webapp/index.jsp
+SpringMybatis-Template/src/main/webapp/
+SpringMybatis-Template/target/
+SpringMybatis/src/main/java/com/liz/filter/
+SpringMybatis/src/main/webapp/WEB-INF/classes/
+SpringMybatis/src/test/java_test/test/
+pom.xml

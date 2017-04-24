@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liz.mapper.UserMapper">
+    <!--<cache type="com.yyw.yhyc.cache.LoggingRedisCache"-->
+           <!--flushInterval="86400000" size="1024000">-->
+    <!--</cache>-->
+    <resultMap id="UserResultMapper" type="com.liz.model.User">
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="password" property="password"/>
+        <result column="user_state" property="userState"/>
+        <result column="user_type" property="userType"/>
+        <result column="head_portrait" property="headPortrait"/>
+        <result column="mobile_phone" property="mobilePhone"/>
+        <result column="email" property="email"/>
+        <result column="third_type" property="thirdType"/>
+        <result column="from_module" property="fromModule"/>
+        <result column="t_id" property="tId"/>
+        <result column="register_time" property="registerTime"/>
+        <result column="register_ip" property="registerIp"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="login_count" property="loginCount"/>
+    </resultMap>
+
+    <sql id="commonColumns">
+        user_id,
+        user_name,
+        nick_name,
+        password,
+        user_state,
+        user_type,
+        head_portrait,
+        mobile_phone,
+        email,
+        third_type,
+        from_module,
+        t_id,
+        register_time,
+        register_ip,
+        last_login_time,
+        last_login_ip,
+        login_count
+    </sql>
+
+    <sql id="commonColumnsNotPK">
+        user_name,
+        nick_name,
+        password,
+        user_state,
+        user_type,
+        head_portrait,
+        mobile_phone,
+        email,
+        third_type,
+        from_module,
+        t_id,
+        register_time,
+        register_ip,
+        last_login_time,
+        last_login_ip,
+        login_count
+    </sql>
+
+
+    <sql id="commonProcessDateColumns">
+    user_id,
+    user_name,
+    nick_name,
+    password,
+    user_state,
+    user_type,
+    head_portrait,
+    mobile_phone,
+    email,
+    third_type,
+    from_module,
+    t_id,
+    register_time,
+    register_ip,
+    last_login_time,
+    last_login_ip,
+    login_count
+    </sql>
+
+    <sql id="commonCondition">
+        <if test="userName!= null and userName!= ''">
+            AND user_name = #{userName}
+        </if>
+        <if test="nickName!= null and nickName!= ''">
+            AND nick_name = #{nickName}
+        </if>
+        <if test="password!= null and password!= ''">
+            AND password = #{password}
+        </if>
+        <if test="userState!= null and userState!= ''">
+            AND user_state = #{userState}
+        </if>
+        <if test="userType!= null and userType!= ''">
+            AND user_type = #{userType}
+        </if>
+        <if test="headPortrait!= null and headPortrait!= ''">
+            AND head_portrait = #{headPortrait}
+        </if>
+        <if test="mobilePhone!= null and mobilePhone!= ''">
+            AND mobile_phone = #{mobilePhone}
+        </if>
+        <if test="email!= null and email!= ''">
+            AND email = #{email}
+        </if>
+        <if test="thirdType!= null and thirdType!= ''">
+            AND third_type = #{thirdType}
+        </if>
+        <if test="fromModule!= null and fromModule!= ''">
+            AND from_module = #{fromModule}
+        </if>
+        <if test="tId!= null and tId!= ''">
+            AND t_id = #{tId}
+        </if>
+        <if test="registerTime!= null and registerTime!= ''">
+            AND register_time = #{registerTime}
+        </if>
+        <if test="registerIp!= null and registerIp!= ''">
+            AND register_ip = #{registerIp}
+        </if>
+        <if test="lastLoginTime!= null and lastLoginTime!= ''">
+            AND last_login_time = #{lastLoginTime}
+        </if>
+        <if test="lastLoginIp!= null and lastLoginIp!= ''">
+            AND last_login_ip = #{lastLoginIp}
+        </if>
+        <if test="loginCount!= null and loginCount!= ''">
+            AND login_count = #{loginCount}
+        </if>
+    </sql>
+
+
+    <insert id="save" parameterType="com.liz.model.User">
+        <![CDATA[ INSERT INTO t_user ( ]]> <include refid="commonColumnsNotPK"/>
+        <![CDATA[
+                ) VALUES (
+                #{userName},
+                #{nickName},
+                #{password},
+                #{userState},
+                #{userType},
+                #{headPortrait},
+                #{mobilePhone},
+                #{email},
+                #{thirdType},
+                #{fromModule},
+                #{tId},
+                #{registerTime},
+                #{registerIp},
+                #{lastLoginTime},
+                #{lastLoginIp},
+                #{loginCount}
+      ) ]]>
+    </insert>
+
+    <update id="update" parameterType="com.liz.model.User">
+        <![CDATA[ UPDATE t_user SET
+         user_id = #{userId} ]]>
+
+        <if test="userName!= null and userName!= ''">
+            , user_name = #{userName}
+        </if>
+        <if test="nickName!= null and nickName!= ''">
+            , nick_name = #{nickName}
+        </if>
+        <if test="password!= null and password!= ''">
+            , password = #{password}
+        </if>
+        <if test="userState!= null and userState!= ''">
+            , user_state = #{userState}
+        </if>
+        <if test="userType!= null and userType!= ''">
+            , user_type = #{userType}
+        </if>
+        <if test="headPortrait!= null and headPortrait!= ''">
+            , head_portrait = #{headPortrait}
+        </if>
+        <if test="mobilePhone!= null and mobilePhone!= ''">
+            , mobile_phone = #{mobilePhone}
+        </if>
+        <if test="email!= null and email!= ''">
+            , email = #{email}
+        </if>
+        <if test="thirdType!= null and thirdType!= ''">
+            , third_type = #{thirdType}
+        </if>
+        <if test="fromModule!= null and fromModule!= ''">
+            , from_module = #{fromModule}
+        </if>
+        <if test="tId!= null and tId!= ''">
+            , t_id = #{tId}
+        </if>
+        <if test="registerTime!= null and registerTime!= ''">
+            , register_time = #{registerTime}
+        </if>
+        <if test="registerIp!= null and registerIp!= ''">
+            , register_ip = #{registerIp}
+        </if>
+        <if test="lastLoginTime!= null and lastLoginTime!= ''">
+            , last_login_time = #{lastLoginTime}
+        </if>
+        <if test="lastLoginIp!= null and lastLoginIp!= ''">
+            , last_login_ip = #{lastLoginIp}
+        </if>
+        <if test="loginCount!= null and loginCount!= ''">
+            , login_count = #{loginCount}
+        </if>
+
+      <![CDATA[  WHERE user_id = #{userId} ]]>
+    </update>
+
+
+    <delete id="deleteByPK" parameterType="java.lang.Integer">
+        <![CDATA[ DELETE FROM t_user
+        WHERE user_id = #{userId} ]]>
+    </delete>
+
+    <delete id="deleteByPKeys" parameterType="map">
+        DELETE FROM t_user WHERE
+        <foreach collection="primaryKeys" index="index" item="id" open=" user_id IN(" separator="," close=") ">
+            ${id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="com.liz.model.User">
+        DELETE FROM t_user WHERE 1 = 1
+        <include refid="commonCondition"/>
+    </delete>
+
+    <select id="getByPK" parameterType="java.lang.Integer" resultMap="UserResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_user WHERE user_id = #{userId}
+    </select>
+
+    <select id="list" resultMap="UserResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_user
+    </select>
+
+    <select id="listByProperty" parameterType="com.liz.model.User" resultMap="UserResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_user WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByCount" parameterType="com.liz.model.User" resultType="int">
+        SELECT count(1) AS totalcount FROM t_user WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByPagination" parameterType="com.liz.model.User" resultMap="UserResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_user WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+</mapper>
