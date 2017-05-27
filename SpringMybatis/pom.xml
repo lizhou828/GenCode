@@ -105,6 +105,14 @@
             <version>1.3.0</version>
         </dependency>
 
+        <!-- Mybatis分页拦截器 -->
+        <!--https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md-->
+        <dependency>
+            <groupId>com.liz</groupId>
+            <artifactId>common-pagination</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
 
         <!-- mysql驱动包 -->
         <dependency>
