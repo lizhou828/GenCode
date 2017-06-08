@@ -6,11 +6,8 @@
  */
 package com.liz.mapper;
 
-import java.util.List;
 
 import com.liz.model.User;
-import com.liz.mapper.GenericIBatisMapper;
-import com.liz.common.pojo.Pagination;
 
 public interface UserMapper extends GenericIBatisMapper <User, Integer>{
 
