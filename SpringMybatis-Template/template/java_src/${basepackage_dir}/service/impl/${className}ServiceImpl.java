@@ -2,15 +2,16 @@
 <#assign className = table.className>
 <#assign classNameLower = className?uncap_first>
 
-package ${basepackage}.service;
+package com.liz.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import ${basepackage}.mapper.${className}Service;
+
 import ${basepackage}.mapper.${className}Mapper;
 import ${basepackage}.model.${className};
 import java.util.List;
 
+import com.liz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,27 +31,24 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * 通过主键查询实体对象
      * @param primaryKey
      * @return
-     * @throws Exception
      */
-    public ${className} getByPK(java.lang.Integer primaryKey) throws Exception {
+    public ${className} getByPK(java.lang.Integer primaryKey) {
         return ${classNameLower}Mapper.getByPK(primaryKey);
     }
 
     /**
      * 查询所有记录
      * @return
-     * @throws Exception
      */
-    public List<${className}> list() throws Exception {
+    public List<${className}> list() {
         return ${classNameLower}Mapper.list();
     }
 
     /**
      * 根据查询条件查询所有记录
      * @return
-     * @throws Exception
      */
-    public List<${className}> listByProperty(${className} ${classNameLower})throws Exception {
+    public List<${className}> listByProperty(${className} ${classNameLower}){
         return ${classNameLower}Mapper.listByProperty(${classNameLower});
     }
 
@@ -59,18 +57,16 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * 根据主键删除记录
      * @param primaryKey
      * @return
-     * @throws Exception
      */
-    public int deleteByPK(java.lang.Integer primaryKey) throws Exception {
+    public int deleteByPK(java.lang.Integer primaryKey) {
         return ${classNameLower}Mapper.deleteByPK(primaryKey);
     }
 
     /**
      * 根据多个主键删除记录
      * @param primaryKeys
-     * @throws Exception
      */
-    public void deleteByPKeys(List<java.lang.Integer> primaryKeys) throws Exception {
+    public void deleteByPKeys(List<java.lang.Integer> primaryKeys) {
         ${classNameLower}Mapper.deleteByPKeys(primaryKeys);
     }
 
@@ -78,9 +74,8 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * 根据传入参数删除记录
      * @param ${classNameLower}
      * @return
-     * @throws Exception
      */
-    public int deleteByProperty(${className} ${classNameLower}) throws Exception {
+    public int deleteByProperty(${className} ${classNameLower}){
         return ${classNameLower}Mapper.deleteByProperty(${classNameLower});
     }
 
@@ -88,9 +83,8 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * 保存记录
      * @param ${classNameLower}
      * @return
-     * @throws Exception
      */
-    public void save(${className} ${classNameLower}) throws Exception {
+    public void save(${className} ${classNameLower}){
         ${classNameLower}Mapper.save(${classNameLower});
     }
 
@@ -98,9 +92,8 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * 更新记录
      * @param ${classNameLower}
      * @return
-     * @throws Exception
      */
-    public int update(${className} ${classNameLower}) throws Exception{
+    public int update(${className} ${classNameLower}){
         return ${classNameLower}Mapper.update(${classNameLower});
     }
 
@@ -108,16 +101,14 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * 根据条件查询记录条数
      * @param ${classNameLower}
      * @return
-     * @throws Exception
      */
-    public int findByCount(${className} ${classNameLower}) throws Exception {
+    public int findByCount(${className} ${classNameLower}){
         return ${classNameLower}Mapper.findByCount(${classNameLower});
     }
 
      /**
      * 根据查询条件查询分页记录
      * @return
-     * @throws Exception
      */
     @Override
     public Page<${className}> findByPage(Page<${className}> page, ${className} ${classNameLower}) {
