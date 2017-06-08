@@ -14,6 +14,4 @@ import com.liz.common.pojo.Pagination;
 
 public interface UserMapper extends GenericIBatisMapper <User, Integer>{
 
-    public List<User> findByPagination(Pagination<User> pagination, User user);
-
 }

@@ -7,7 +7,8 @@
 
 package com.liz.service.impl;
 
-import com.liz.common.pojo.Pagination;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.liz.mapper.UserMapper;
 import com.liz.model.User;
 import java.util.List;
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl  extends GenericService<User, Integer> implements UserService {
 
     private UserMapper userMapper;
 
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public User getByPK(Integer primaryKey) throws Exception {
+    public User getByPK(Integer primaryKey){
         return userMapper.getByPK(primaryKey);
     }
 
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public List<User> list() throws Exception {
+    public List<User> list() {
         return userMapper.list();
     }
 
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public List<User> listByProperty(User user)throws Exception {
+    public List<User> listByProperty(User user){
         return userMapper.listByProperty(user);
     }
 
@@ -63,7 +64,7 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public int deleteByPK(Integer primaryKey) throws Exception {
+    public int deleteByPK(Integer primaryKey) {
         return userMapper.deleteByPK(primaryKey);
     }
 
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService {
      * @param primaryKeys
      * @throws Exception
      */
-    public void deleteByPKeys(List<Integer> primaryKeys) throws Exception {
+    public void deleteByPKeys(List<Integer> primaryKeys) {
         userMapper.deleteByPKeys(primaryKeys);
     }
 
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public int deleteByProperty(User user) throws Exception {
+    public int deleteByProperty(User user) {
         return userMapper.deleteByProperty(user);
     }
 
@@ -92,8 +93,8 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public void save(User user) throws Exception {
-        userMapper.save(user);
+    public int save(User user) {
+        return userMapper.save(user);
     }
 
     /**
@@ -102,7 +103,7 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public int update(User user) throws Exception{
+    public int update(User user){
         return userMapper.update(user);
     }
 
@@ -112,19 +113,23 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    public int findByCount(User user) throws Exception {
+    public int findByCount(User user) {
         return userMapper.findByCount(user);
     }
 
+    /**
     /**
      * 根据查询条件查询分页记录
      * @return
      * @throws Exception
      */
-    public Pagination<User> findByPagination(Pagination<User> pagination, User user) throws Exception{
-        List<User> list = userMapper.findByPagination(pagination, user);
-        pagination.setResultList(list);
-        return pagination;
+    @Override
+    public Page<User> findByPage(Page<User> page, User user) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<User> userList = userMapper.listByProperty(user);
+        if(null == userList || userList.size() == 0){
+            return new Page<User>();
+        }
+        return (Page<User>)userList;
     }
-
 }

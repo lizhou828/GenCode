@@ -34,7 +34,11 @@ public class ${className} implements Serializable {
     public String toString() {
         return "${className} {" +
             <#list table.columns as column>
-                " , ${column.columnNameLower} = " + ${column.columnNameLower} +
+                <#if column.pk>
+                    " ${column.columnNameLower} = " + ${column.columnNameLower} +
+                <#else>
+                    " , ${column.columnNameLower} = " + ${column.columnNameLower} +
+                </#if>
             </#list>
             "}";
         }

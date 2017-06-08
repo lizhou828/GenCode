@@ -7,12 +7,12 @@
 
 package com.liz.controller;
 
+import com.github.pagehelper.Page;
 import com.liz.model.User;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.liz.common.pojo.Pagination;
 import com.liz.common.pojo.RequestModel;
 import com.liz.service.UserService;
 
@@ -50,14 +50,13 @@ public class UserController {
      * 分页查询记录
      * @return
      */
-    @RequestMapping(value = {"/listPg"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/findByPage"}, method = RequestMethod.POST)
     @ResponseBody
-    public Pagination<User> findByPagination(@RequestBody RequestModel<User> requestModel) throws Exception {
-        Pagination<User> pagination = new Pagination<User>();
-        pagination.setPaginationFlag(requestModel.isPaginationFlag());
-        pagination.setPageNo(requestModel.getPageNo());
-        pagination.setPageSize(requestModel.getPageSize());
-        return userService.findByPagination(pagination, requestModel.getParam());
+    public Page<User> findByPage(@RequestBody RequestModel<User> requestModel) throws Exception {
+        Page<User> page = new Page<User>();
+        page.setPageNum(requestModel.getPageNo());
+        page.setPageSize(requestModel.getPageSize());
+        return userService.findByPage(page, requestModel.getParam());
     }
 
     /**

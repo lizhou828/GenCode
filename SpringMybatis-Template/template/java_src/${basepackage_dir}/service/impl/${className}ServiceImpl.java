@@ -4,7 +4,8 @@
 
 package ${basepackage}.service;
 
-import com.liz.common.pojo.Pagination;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import ${basepackage}.mapper.${className}Service;
 import ${basepackage}.mapper.${className}Mapper;
 import ${basepackage}.model.${className};
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class ${className}ServiceImpl implements ${className}Service {
+public class ${className}ServiceImpl extends GenericService<User, Integer> implements ${className}Service {
 
     private ${className}Mapper ${classNameLower}Mapper;
 
@@ -113,15 +114,18 @@ public class ${className}ServiceImpl implements ${className}Service {
         return ${classNameLower}Mapper.findByCount(${classNameLower});
     }
 
-    /**
+     /**
      * 根据查询条件查询分页记录
      * @return
      * @throws Exception
      */
-    public Pagination<${className}> findByPagination(Pagination<${className}> pagination, ${className} ${classNameLower}) throws Exception{
-        List<${className}> list = ${classNameLower}Mapper.findByPagination(pagination, ${classNameLower});
-        pagination.setResultList(list);
-        return pagination;
+    @Override
+    public Page<${className}> findByPage(Page<${className}> page, ${className} ${classNameLower}) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<${className}> ${classNameLower}List = ${classNameLower}Mapper.listByProperty(${classNameLower});
+        if(null == ${classNameLower}List || ${classNameLower}List.size() == 0){
+            return new Page<${className}>();
+        }
+        return (Page<${className}>)${classNameLower}List;
     }
-
 }

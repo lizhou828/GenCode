@@ -3,7 +3,6 @@ package com.liz.service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.liz.common.pojo.Pagination;
 import com.liz.mapper.UserMapper;
 import com.liz.model.User;
 import org.junit.After;
@@ -52,14 +51,13 @@ public class UserServiceImpTest {
     }
 
     @Test
-    public void findByPagination() throws Exception {
-        Pagination<User> pagination = new com.liz.common.pojo.Pagination<User>();
-        pagination.setPaginationFlag(true);
-        pagination.setPageNo(1);
-        pagination.setPageSize(2);
+    public void findByPage() throws Exception {
+        Page<User> page = new Page<>();
+        page.setPageNum(1);
+        page.setPageSize(2);
         User user = new User();
-        Pagination<User>  userPagination = userService.findByPagination(pagination, user);
-        System.out.println(userPagination);
+        Page<User>  userPage = userService.findByPage(page, user);
+        System.out.println("userPage=" + userPage);
 
     }
 

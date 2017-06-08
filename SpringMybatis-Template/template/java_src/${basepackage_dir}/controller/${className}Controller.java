@@ -5,11 +5,11 @@
 package ${basepackage}.controller;
 
 import ${basepackage}.model.${className};
+import com.github.pagehelper.Page;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.liz.common.pojo.Pagination;
 import com.liz.common.pojo.RequestModel;
 import ${basepackage}.service.${className}Service;
 
@@ -47,14 +47,13 @@ public class ${className}Controller {
      * 分页查询记录
      * @return
      */
-    @RequestMapping(value = {"/listPg"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/findByPage"}, method = RequestMethod.POST)
     @ResponseBody
-    public Pagination<${className}> findByPagination(@RequestBody RequestModel<${className}> requestModel) throws Exception {
-        Pagination<${className}> pagination = new Pagination<${className}>();
-        pagination.setPaginationFlag(requestModel.isPaginationFlag());
-        pagination.setPageNo(requestModel.getPageNo());
-        pagination.setPageSize(requestModel.getPageSize());
-        return ${classNameLower}Service.findByPagination(pagination, requestModel.getParam());
+    public Page<${className}> findByPage(@RequestBody RequestModel<${className}> requestModel) throws Exception {
+        Page<${className}> page = new Page<${className}>();
+        page.setPageNum(requestModel.getPageNo());
+        page.setPageSize(requestModel.getPageSize());
+        return ${classNameLower}Service.findByPage(page, requestModel.getParam());
     }
 
     /**
