@@ -9,6 +9,7 @@ package com.liz.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+
 import com.liz.mapper.UserMapper;
 import com.liz.model.User;
 import java.util.List;
@@ -20,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class UserServiceImpl  extends GenericService<User, Integer> implements UserService {
+public class UserServiceImpl extends GenericService<User, Integer> implements UserService {
 
     private UserMapper userMapper;
 
@@ -33,16 +34,14 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
      * 通过主键查询实体对象
      * @param primaryKey
      * @return
-     * @throws Exception
      */
-    public User getByPK(Integer primaryKey){
+    public User getByPK(java.lang.Integer primaryKey) {
         return userMapper.getByPK(primaryKey);
     }
 
     /**
      * 查询所有记录
      * @return
-     * @throws Exception
      */
     public List<User> list() {
         return userMapper.list();
@@ -51,7 +50,6 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
     /**
      * 根据查询条件查询所有记录
      * @return
-     * @throws Exception
      */
     public List<User> listByProperty(User user){
         return userMapper.listByProperty(user);
@@ -62,18 +60,16 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
      * 根据主键删除记录
      * @param primaryKey
      * @return
-     * @throws Exception
      */
-    public int deleteByPK(Integer primaryKey) {
+    public int deleteByPK(java.lang.Integer primaryKey){
         return userMapper.deleteByPK(primaryKey);
     }
 
     /**
      * 根据多个主键删除记录
      * @param primaryKeys
-     * @throws Exception
      */
-    public void deleteByPKeys(List<Integer> primaryKeys) {
+    public void deleteByPKeys(List<java.lang.Integer> primaryKeys){
         userMapper.deleteByPKeys(primaryKeys);
     }
 
@@ -81,7 +77,6 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
      * 根据传入参数删除记录
      * @param user
      * @return
-     * @throws Exception
      */
     public int deleteByProperty(User user) {
         return userMapper.deleteByProperty(user);
@@ -91,7 +86,6 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
      * 保存记录
      * @param user
      * @return
-     * @throws Exception
      */
     public int save(User user) {
         return userMapper.save(user);
@@ -101,7 +95,6 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
      * 更新记录
      * @param user
      * @return
-     * @throws Exception
      */
     public int update(User user){
         return userMapper.update(user);
@@ -111,13 +104,11 @@ public class UserServiceImpl  extends GenericService<User, Integer> implements U
      * 根据条件查询记录条数
      * @param user
      * @return
-     * @throws Exception
      */
-    public int findByCount(User user) {
+    public int findByCount(User user){
         return userMapper.findByCount(user);
     }
 
-    /**
     /**
      * 根据查询条件查询分页记录
      * @return

@@ -7,8 +7,8 @@
 
 package com.liz.controller;
 
-import com.github.pagehelper.Page;
 import com.liz.model.User;
+import com.github.pagehelper.Page;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
