@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 //  标明是web应用测试
 @WebAppConfiguration(value = "src/main/webapp") //可以不填，默认此目录
 // 配置文件地址
-@ContextConfiguration(locations = { "file:src/main/resources/applicationContext.xml", "file:src/main/resources/spring-mybatis.xml", "file:src/main/resources/springMVC-servlet.xml" })
+@ContextConfiguration(locations = { "file:src/main/resources/applicationContext*.xml", "file:src/main/resources/spring*.xml"})
 
 public class BaseUnitTest {
 
