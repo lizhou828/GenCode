@@ -84,8 +84,8 @@ public class ${className}ServiceImpl extends GenericService<${className}, Intege
      * @param ${classNameLower}
      * @return
      */
-    public void save(${className} ${classNameLower}){
-        ${classNameLower}Mapper.save(${classNameLower});
+    public int save(${className} ${classNameLower}){
+        return ${classNameLower}Mapper.save(${classNameLower});
     }
 
     /**
