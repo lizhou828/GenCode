@@ -18,6 +18,7 @@ import com.liz.service.UserService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +58,21 @@ public class UserController {
         page.setPageNum(requestModel.getPageNo());
         page.setPageSize(requestModel.getPageSize());
         return userService.findByPage(page, requestModel.getParam());
+    }
+
+    /**
+     * 分页查询记录
+     * @return
+     */
+    @RequestMapping(value = {"/searchByPage"}, method = RequestMethod.POST)
+    public String searchByPage(@RequestBody RequestModel<User> requestModel,ModelMap modelMap) throws Exception {
+        Page<User> page = new Page<User>();
+        page.setPageNum(requestModel.getPageNo());
+        page.setPageSize(requestModel.getPageSize());
+
+        Page<User> userPage =  userService.findByPage(page, requestModel.getParam());
+        modelMap.put("userPage",userPage);
+        return "/user/searchByPage";
     }
 
     /**

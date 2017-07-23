@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liz.mapper.BillionMapper">
+    <!--<cache type="com.yyw.yhyc.cache.LoggingRedisCache"-->
+           <!--flushInterval="86400000" size="1024000">-->
+    <!--</cache>-->
+    <resultMap id="BillionResultMapper" type="com.liz.model.Billion">
+        <result column="id" property="id"/>
+        <result column="ip" property="ip"/>
+        <result column="url" property="url"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="creator" property="creator"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modifier" property="modifier"/>
+        <result column="modifier_time" property="modifierTime"/>
+    </resultMap>
+
+    <sql id="commonColumns">
+        id,
+        ip,
+        url,
+        title,
+        content,
+        creator,
+        create_time,
+        modifier,
+        modifier_time
+    </sql>
+
+    <sql id="commonColumnsNotPK">
+        ip,
+        url,
+        title,
+        content,
+        creator,
+        create_time,
+        modifier,
+        modifier_time
+    </sql>
+
+
+    <sql id="commonProcessDateColumns">
+    id,
+    ip,
+    url,
+    title,
+    content,
+    creator,
+    create_time,
+    modifier,
+    modifier_time
+    </sql>
+
+    <sql id="commonCondition">
+        <if test="ip!= null and ip!= ''">
+            AND ip = #{ip}
+        </if>
+        <if test="url!= null and url!= ''">
+            AND url = #{url}
+        </if>
+        <if test="title!= null and title!= ''">
+            AND title = #{title}
+        </if>
+        <if test="content!= null and content!= ''">
+            AND content = #{content}
+        </if>
+        <if test="creator!= null and creator!= ''">
+            AND creator = #{creator}
+        </if>
+        <if test="createTime!= null and createTime!= ''">
+            AND create_time = #{createTime}
+        </if>
+        <if test="modifier!= null and modifier!= ''">
+            AND modifier = #{modifier}
+        </if>
+        <if test="modifierTime!= null and modifierTime!= ''">
+            AND modifier_time = #{modifierTime}
+        </if>
+    </sql>
+
+
+    <insert id="save" parameterType="com.liz.model.Billion">
+        <![CDATA[ INSERT INTO t_billion ( ]]> <include refid="commonColumnsNotPK"/>
+        <![CDATA[
+                ) VALUES (
+                #{ip},
+                #{url},
+                #{title},
+                #{content},
+                #{creator},
+                #{createTime},
+                #{modifier},
+                #{modifierTime}
+      ) ]]>
+    </insert>
+
+    <update id="update" parameterType="com.liz.model.Billion">
+        <![CDATA[ UPDATE t_billion SET
+         id = #{id} ]]>
+
+        <if test="ip!= null and ip!= ''">
+            , ip = #{ip}
+        </if>
+        <if test="url!= null and url!= ''">
+            , url = #{url}
+        </if>
+        <if test="title!= null and title!= ''">
+            , title = #{title}
+        </if>
+        <if test="content!= null and content!= ''">
+            , content = #{content}
+        </if>
+        <if test="creator!= null and creator!= ''">
+            , creator = #{creator}
+        </if>
+        <if test="createTime!= null and createTime!= ''">
+            , create_time = #{createTime}
+        </if>
+        <if test="modifier!= null and modifier!= ''">
+            , modifier = #{modifier}
+        </if>
+        <if test="modifierTime!= null and modifierTime!= ''">
+            , modifier_time = #{modifierTime}
+        </if>
+
+      <![CDATA[  WHERE id = #{id} ]]>
+    </update>
+
+
+    <delete id="deleteByPK" parameterType="java.lang.Integer">
+        <![CDATA[ DELETE FROM t_billion
+        WHERE id = #{id} ]]>
+    </delete>
+
+    <delete id="deleteByPKeys" parameterType="map">
+        DELETE FROM t_billion WHERE
+        <foreach collection="primaryKeys" index="index" item="id" open=" id IN(" separator="," close=") ">
+            ${id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="com.liz.model.Billion">
+        DELETE FROM t_billion WHERE 1 = 1
+        <include refid="commonCondition"/>
+    </delete>
+
+    <select id="getByPK" parameterType="java.lang.Integer" resultMap="BillionResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_billion WHERE id = #{id}
+    </select>
+
+    <select id="list" resultMap="BillionResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_billion
+    </select>
+
+    <select id="listByProperty" parameterType="com.liz.model.Billion" resultMap="BillionResultMapper">
+        SELECT  <include refid="commonProcessDateColumns"/>
+        FROM t_billion WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByCount" parameterType="com.liz.model.Billion" resultType="int">
+        SELECT count(1) AS totalcount FROM t_billion WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+    <select id="findByPagination" parameterType="com.liz.model.Billion" resultMap="BillionResultMapper">
+        SELECT <include refid="commonProcessDateColumns"/>
+        FROM t_billion WHERE 1=1
+        <include refid="commonCondition"/>
+    </select>
+
+</mapper>
