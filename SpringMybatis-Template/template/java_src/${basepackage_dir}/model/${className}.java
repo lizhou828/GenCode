@@ -14,18 +14,18 @@ public class ${className} implements Serializable {
     private static final long serialVersionUID = 1L;
 
 <#list table.columns as c>
-    /* ${c.remarks} */
+    /* ${c.remarks?if_exists} */
     private ${c.javaType} ${c.columnNameLower};
 
 </#list>
 
 <#list table.columns as c>
-    /* get ${c.remarks} */
+    /* get ${c.remarks?if_exists} */
     public ${c.javaType} get${c.columnNameUpper}() {
         return ${c.columnNameLower};
     }
 
-    /* set ${c.remarks} */
+    /* set ${c.remarks?if_exists} */
     public void set${c.columnNameUpper}(${c.javaType} ${c.columnNameLower}) {
         this.${c.columnNameLower} = ${c.columnNameLower};
     }
