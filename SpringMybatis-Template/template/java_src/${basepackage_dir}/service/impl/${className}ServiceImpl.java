@@ -11,14 +11,14 @@ import ${basepackage}.mapper.${className}Mapper;
 import ${basepackage}.model.${className};
 import java.util.List;
 
-import com.liz.service.UserService;
+import com.liz.service.${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class ${className}ServiceImpl extends GenericService<User, Integer> implements ${className}Service {
+public class ${className}ServiceImpl extends GenericService<${className}, Integer> implements ${className}Service {
 
     private ${className}Mapper ${classNameLower}Mapper;
 
@@ -84,8 +84,8 @@ public class ${className}ServiceImpl extends GenericService<User, Integer> imple
      * @param ${classNameLower}
      * @return
      */
-    public void save(${className} ${classNameLower}){
-        ${classNameLower}Mapper.save(${classNameLower});
+    public int save(${className} ${classNameLower}){
+        return ${classNameLower}Mapper.save(${classNameLower});
     }
 
     /**

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.liz.mapper.UserMapper;
+import com.liz.model.Billion;
 import com.liz.model.User;
 import org.junit.After;
 import org.junit.Before;
@@ -20,19 +21,16 @@ import java.util.List;
  * Created by lizhou on 2017年04月24日 22时34分
  */
 
-// 告诉spring怎样执行
-@RunWith(SpringJUnit4ClassRunner.class)
-//  标明是web应用测试
-@WebAppConfiguration(value = "src/main/webapp") //可以不填，默认此目录
-// 配置文件地址
-@ContextConfiguration(locations = { "file:src/main/resources/applicationContext.xml", "file:src/main/resources/spring-mybatis.xml", "file:src/main/resources/springMVC-servlet.xml" })
 
-public class UserServiceImpTest {
+public class UserServiceImpTest  extends BaseUnitTest{
     @Autowired
     private UserMapper userMapper;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BillionService billionService;
 
     @Before
     public void before(){
@@ -86,5 +84,13 @@ public class UserServiceImpTest {
         System.out.println("userPage=" + userPage);
 //        userPage=Page{count=true, pageNum=2, pageSize=2, startRow=2, endRow=4, total=3, pages=2, reasonable=false, pageSizeZero=false, resultList=[User { , userId = 3 , userName = system , nickName = system , password = e10adc3949ba59abbe56e057f20f883e , userState = 1 , userType = 1 , headPortrait = null , mobilePhone = null , email = null , thirdType = null , fromModule = null , tId = null , registerTime = null , registerIp = null , lastLoginTime = null , lastLoginIp = null , loginCount = null}]}
     }
+
+
+    @Test
+    public void billionServiceTest(){
+        Billion billion = billionService.getByPK(1);
+        System.out.println("billion=" + billion);
+    }
+
 
 }
