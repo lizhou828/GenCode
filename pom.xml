@@ -13,6 +13,8 @@
         <module>SpringBoot</module>
         <module>SpringBoot-Template</module>
         <module>SpringMybatis-Template</module>
+        <module>Manager</module>
+        <module>Manager-Template</module>
     </modules>
 
     <dependencies>
