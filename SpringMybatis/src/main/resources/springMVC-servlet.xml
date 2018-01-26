@@ -12,14 +12,14 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
     <!-- 注解扫描包 (以完成bean创建和自动依赖注入的功能)-->
-    <context:component-scan base-package="com.liz.*" >
+    <context:component-scan base-package="com.liz">
         <!-- springMVC配置文件中将Service注解给去掉 -->
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
-    </context:component-scan>
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />-->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />-->
+     </context:component-scan>
 
-    <!-- <context:component-scan /> -->
+
     <!-- 扫描指定的包中的类上的注解，常用的注解有： -->
     <!-- @Controller 声明Action组件 -->
     <!-- @Service 声明Service组件 @Service("xxxService") -->
@@ -40,7 +40,7 @@
     <!-- 注解方法处理 -->
     <!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
     <!-- 注解类映射处理 -->
-    <!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" /> -->
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" /> -->
 
     <!-- 开启注解方案2 -->
     <mvc:annotation-driven />
@@ -66,65 +66,63 @@
     </bean>
 
     <!-- Spring MVC JSON配置 -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <bean
-                        class="org.springframework.http.converter.StringHttpMessageConverter">
-                    <property name="supportedMediaTypes">
-                        <list>
-                            <value>text/plain;charset=UTF-8</value>
-                        </list>
-                    </property>
-                </bean>
-                <bean
-                        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                    <property name="supportedMediaTypes">
-                        <list>
-                            <value>application/json;charset=UTF-8</value>
-                        </list>
-                    </property>
-                </bean>
-            </list>
-        </property>
-    </bean>
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+        <!--<property name="messageConverters">-->
+            <!--<list>-->
+                <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+                    <!--<property name="supportedMediaTypes">-->
+                        <!--<list>-->
+                            <!--<value>text/plain;charset=UTF-8</value>-->
+                        <!--</list>-->
+                    <!--</property>-->
+                <!--</bean>-->
+                <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+                    <!--<property name="supportedMediaTypes">-->
+                        <!--<list>-->
+                            <!--<value>application/json;charset=UTF-8</value>-->
+                        <!--</list>-->
+                    <!--</property>-->
+                <!--</bean>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!-- 文件上传配置 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding">
-            <value>UTF-8</value>
-        </property>
-        <property name="maxUploadSize">
-            <value>104857600</value> <!-- 100M  1024 * 1024 * 100 -->
-        </property>
-        <property name="maxInMemorySize">
-            <value>4096</value>
-        </property>
-    </bean>
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--<property name="defaultEncoding">-->
+            <!--<value>UTF-8</value>-->
+        <!--</property>-->
+        <!--<property name="maxUploadSize">-->
+            <!--<value>1048576</value> &lt;!&ndash; 10M  1024 * 1024  &ndash;&gt;-->
+        <!--</property>-->
+        <!--<property name="maxInMemorySize">-->
+            <!--<value>4096</value>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!-- 拦截器 -->
-    <mvc:interceptors>
-        <!-- <mvc:interceptor>
-            <mvc:mapping path="/**" />
-            <bean class="com.weixin.core.interceptors.EncodingInterceptor" />
-        </mvc:interceptor> -->
-        <mvc:interceptor>
-            <mvc:mapping path="/**" />
-            <bean class="com.liz.interceptor.AuthInterceptor">
-                <!-- 不需要权限验证的地址  -->
-                <property name="excludeUrls">
-                    <list>
-                        <value>wechat</value><!-- 登录页面 -->
-                        <value>checkUsername</value><!-- 注册时检查用户名是否重复 -->
-                        <value>register</value><!-- 注册页面 -->
-                        <value>login</value><!-- 登录操作 -->
-                        <value>logout</value><!-- 登出操作 -->
-                        <value>validateCode</value><!-- 生成验证码 -->
-                        <value>user/getUserList</value>
-                    </list>
-                </property>
-            </bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash; <mvc:interceptor>-->
+            <!--<mvc:mapping path="/**" />-->
+            <!--<bean class="com.weixin.core.interceptors.EncodingInterceptor" />-->
+        <!--</mvc:interceptor> &ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**" />-->
+            <!--<bean class="com.liz.interceptor.AuthInterceptor">-->
+                <!--&lt;!&ndash; 不需要权限验证的地址  &ndash;&gt;-->
+                <!--<property name="excludeUrls">-->
+                    <!--<list>-->
+                        <!--<value>wechat</value>&lt;!&ndash; 登录页面 &ndash;&gt;-->
+                        <!--<value>checkUsername</value>&lt;!&ndash; 注册时检查用户名是否重复 &ndash;&gt;-->
+                        <!--<value>register</value>&lt;!&ndash; 注册页面 &ndash;&gt;-->
+                        <!--<value>login</value>&lt;!&ndash; 登录操作 &ndash;&gt;-->
+                        <!--<value>logout</value>&lt;!&ndash; 登出操作 &ndash;&gt;-->
+                        <!--<value>validateCode</value>&lt;!&ndash; 生成验证码 &ndash;&gt;-->
+                        <!--<value>user/getUserList</value>-->
+                    <!--</list>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
 </beans>

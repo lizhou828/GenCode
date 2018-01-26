@@ -61,7 +61,7 @@ public class UserServiceImpl extends GenericService<User, Integer> implements Us
      * @param primaryKey
      * @return
      */
-    public int deleteByPK(java.lang.Integer primaryKey){
+    public int deleteByPK(java.lang.Integer primaryKey) {
         return userMapper.deleteByPK(primaryKey);
     }
 
@@ -69,7 +69,7 @@ public class UserServiceImpl extends GenericService<User, Integer> implements Us
      * 根据多个主键删除记录
      * @param primaryKeys
      */
-    public void deleteByPKeys(List<java.lang.Integer> primaryKeys){
+    public void deleteByPKeys(List<java.lang.Integer> primaryKeys) {
         userMapper.deleteByPKeys(primaryKeys);
     }
 
@@ -78,7 +78,7 @@ public class UserServiceImpl extends GenericService<User, Integer> implements Us
      * @param user
      * @return
      */
-    public int deleteByProperty(User user) {
+    public int deleteByProperty(User user){
         return userMapper.deleteByProperty(user);
     }
 
@@ -87,7 +87,7 @@ public class UserServiceImpl extends GenericService<User, Integer> implements Us
      * @param user
      * @return
      */
-    public int save(User user) {
+    public int save(User user){
         return userMapper.save(user);
     }
 
@@ -112,7 +112,6 @@ public class UserServiceImpl extends GenericService<User, Integer> implements Us
     /**
      * 根据查询条件查询分页记录
      * @return
-     * @throws Exception
      */
     @Override
     public Page<User> findByPage(Page<User> page, User user) {

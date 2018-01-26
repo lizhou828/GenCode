@@ -3,14 +3,9 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
   <display-name>Archetype Created Web Application</display-name>
-
-
-  <!-- 读取spring配置文件 -->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applicationContext.xml,classpath:spring-mybatis.xml</param-value>
-  </context-param>
+  <description>SpringMybatis Java-Web application</description>
 
 
   <!-- 配置过滤器，同时把所有的请求都转为utf-8编码 -->
@@ -32,15 +27,15 @@
   </filter-mapping>
 
 
-  <listener>
-    <!--spring监听器-->
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+  <!--<listener>-->
+    <!--&lt;!&ndash;spring监听器&ndash;&gt;-->
+    <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+  <!--</listener>-->
 
   <!-- 防止spring内存溢出监听器  Introspector缓存清除监听器-->
-  <listener>
-    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-  </listener>
+  <!--<listener>-->
+    <!--<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>-->
+  <!--</listener>-->
 
 
 
@@ -51,7 +46,11 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:springMVC-servlet.xml</param-value>
+      <param-value>
+        classpath:springMVC-servlet.xml
+        <!--classpath:applicationContext.xml,-->
+        <!--classpath:spring-mybatis.xml-->
+      </param-value>
     </init-param>
     <!-- 启动顺序，让这个Servlet随Servlet容器一起启动。 -->
     <load-on-startup>1</load-on-startup>
