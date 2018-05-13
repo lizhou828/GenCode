@@ -1,0 +1,12 @@
+body{font-family:"宋体";margin:0;font-size:12px;}
+*{padding:0px;margin:0px;}
+ul{padding:0px;margin:0px;list-style-type:none;font-family:"宋体";}
+.clear_both{clear:both;font-family:"宋体";color:red;text-align:center}
+#body_bg{background:#0f4f8c url(/img/login_bg.jpg) no-repeat top center;position: relative;}
+#login_bg{width:1002px;margin:auto;padding-top:300px;height:390px;}
+#login_con{width: 305px;background-color:#fff;padding: 20px;margin: 0 auto;}
+.login_con_left{float:left;width:65px;text-align:center;color:#666;line-height:40px;font-size:12px}
+.login_con_right{float:left;width:240px;height:35px;padding-top:5px;}
+.input_bg{height:30px;border:#b5b8c8 1px solid;padding: 0 5px;}
+.btnLogin{margin:5px 5px 2px 0px;border: none;background: #0c7bc3;width:70px;height: 28px;color:white;}
+.footer-login{background: #293952;position: absolute;  left: 0;  right: 0;  bottom: 0;  text-align: center;  color: #fff;padding: 20px;line-height: 21px;}

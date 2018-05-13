@@ -1,0 +1,370 @@
+.section-body {
+  padding: 15px;
+}
+
+/*标题*/
+.base-title {
+  color: #00aff0;
+  font-size: 18px;
+  margin-bottom: 20px;
+  border-left: 6px solid #00aff0;
+  padding-left: 12px;
+}
+.base-title-sm {
+  font-weight: bold;
+  border-left: 4px solid #00aff0;
+  padding-left: 5px;
+}
+/*end*/
+
+/*筛选栏*/
+/*基础表单样式*/
+.base-input {
+  background-color: #fff;
+  height: 21px;
+  line-height: 21px;
+  padding: 5px;
+  border: 1px solid #e1e2e4;
+  box-sizing: initial;
+}
+.base-select {
+  height: 33px;
+  background-color: #fff;
+  border: 1px solid #e1e2e4;
+}
+.base-button {
+  background-color: #00aff0;
+  border-radius: 3px;
+  color: #fff!important;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 13px;
+}
+button.base-button {
+  height: 33px;
+  outline: inherit;
+  cursor: pointer;
+  border: 0;
+}
+a.base-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.base-textarea {
+  background-color: #f2f2f2;
+  border: 1px solid #e1e2e4;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/*表单组*/
+.base-form-item {
+  margin-bottom: 15px;
+}
+.base-form-item::after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.base-form-item .left {
+  width: 170px;
+  text-align: right;
+  line-height: 33px;
+  float: left;
+}
+.base-form-item .right {
+  width: calc(100% - 170px);
+  float: left;
+}
+/*end*/
+
+/*ul 列表*/
+.base-ul-list li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.base-ul-list li:last-child {
+  margin-bottom: 0;
+}
+
+/*左右*/
+.base-ul-list.lf-rt {
+  overflow: hidden;
+}
+.base-ul-list.lf-rt li {
+  float: left;
+  width: 50%;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  padding: 3px 15px 3px 0;
+}
+.base-ul-list.lf-rt .lf {
+  width: 150px;
+  float: left;
+  text-align: right;
+}
+.base-ul-list.lf-rt .rt {
+  margin-left: 160px;
+}
+
+/*end*/
+
+
+/*必填星*/
+.required-style {
+  color: red;
+  font-style: normal;
+}
+/*错误提示*/
+.base-err-msg {
+  color: red;
+  font-style: normal;
+}
+/*end*/
+
+/*底部按钮组*/
+.base-button-group {
+  text-align: center;
+}
+.base-button-group .base-button-lg {
+  margin-right: 30px;
+}
+.base-button-group .base-button-lg:last-child {
+  margin-right: 0;
+}
+.base-button-lg {
+  background-color: #fff;
+  border-radius: 3px;
+  color: #666;
+  font-size: 16px;
+  border: 1px solid #e1e2e4;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+button.base-button-lg {
+  height: 38px;
+  outline: inherit;
+  cursor: pointer;
+}
+a.base-button-lg {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.base-button-lg.blue {
+  background-color: #00aff0;
+  color: #fff;
+  border-color: #00aff0;
+}
+/*end*/
+
+
+/*工具栏*/
+.toolbar-btn {
+  color: #666;
+  font-size: 14px;
+}
+button.toolbar-btn {
+  background-color: transparent;
+  border: none;
+  outline: inherit;
+  cursor: pointer;
+}
+a.toolbar-btn {
+  padding: 2.5px 6px;
+}
+.toolbar-btn .iconfont {
+  margin-right: 3px;
+}
+.toolbar-btn:hover {
+  color: #00aff0;
+}
+/*end*/
+
+/*表格*/
+.base-table {
+  width: 100%;
+  border: 1px solid #e2e3e5;
+  border-collapse: collapse;
+}
+.base-table thead {
+  background-color: #f6f8fb;
+  border-bottom: 1px solid #e2e3e5;
+}
+.base-table thead th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.base-table tbody {
+  background-color: #fff;
+}
+.base-table tbody td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  line-height: 2;
+}
+.base-table tbody td .show-internal-table {
+  display: block;
+  cursor: pointer;
+}
+.base-table tbody td .arrow-up {
+  transform: rotate(180deg);
+}
+.base-table tbody .internal-table tbody {
+  background-color: #e1e3e7;
+}
+.base-table tbody .internal-table tbody tr:nth-of-type(odd) {
+  background-color: #f0f1f3;
+}
+.base-table tbody > tr:not(.internal-table):hover,
+.base-table tbody .internal-table tbody tr:hover {
+  background-color: #283952;
+  color: #fff;
+}
+.base-table tbody .internal-table {
+  display: none;
+  border-bottom: 1px solid #e2e3e5;
+}
+.base-table tbody .internal-table > td {
+  padding: initial;
+}
+/*end*/
+
+/*分页*/
+.base-page {
+  line-height: 21px;
+  text-align: right;
+}
+.base-page .page {
+  margin-left: 10px;
+  float: right;
+}
+
+
+
+
+/*任务管理新建*/
+/*面包屑*/
+.base-breadcrumbs a {
+  color: #333;
+}
+.base-breadcrumbs a:hover {
+  color: #00aff0;
+}
+
+/*项结构*/
+.base-item {
+  background-color: #fff;
+  border: 1px solid #e2e3e5;
+  padding: 20px;
+}
+/*end*/
+
+
+/*电子资料信息*/
+.info-tab-box {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+/*left*/
+.info-tab-box .column-left {
+  width: 160px;
+  background-color: #e1e3e7;
+  float: left;
+}
+.info-tab-box .column-left li {
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  color: #333;
+  cursor: pointer;
+}
+.info-tab-box .column-left li.curr {
+  position: relative;
+  background-color: #f2f2f2;
+  border-bottom-color: #283952;
+  color: #283952;
+  font-weight: bold;
+}
+.info-tab-box .column-left li.curr::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: #f2f2f2;
+  position: absolute;
+  top: 0px;
+  right: -1px;
+}
+.info-tab-box .column-left li.curr::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #283952;
+  position: absolute;
+  top: -1px;
+  right: 0;
+}
+.info-tab-box .column-left li:last-child {
+  border-bottom: none;
+}
+.info-tab-box .column-right .tab-item {
+  display: none;
+}
+.info-tab-box .column-right .tab-item.curr {
+  display: block;
+}
+/*right*/
+.info-tab-box .column-right {
+  float: left;
+  width: calc(100% - 201px);
+  min-height: 301px;
+  padding: 20px;
+  border-left: 1px solid #283952;
+  max-height: 800px;
+  overflow-y: auto;
+}
+.product-file .title {
+  border-left: 4px solid #00aff0;
+  padding-left: 5px;
+}
+/*end*/
+
+/*搜索联想*/
+.include-search-key {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+}
+.include-search-key .base-input {
+  width: 288px;
+}
+.include-search-key .search {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 38px;
+  width: 298px;
+  border: 1px solid #e1e2e4;
+  background-color: #fff;
+  z-index: 999;
+}
+.include-search-key .search.show {
+  display: block;
+}
+.include-search-key .search li {
+  cursor: pointer;
+  padding: 5px;
+}
+.include-search-key .search li:hover {
+  background-color: #00aff0;
+  color: #fff;
+}
+
+/*时间控件 index*/
+.datepicker-container {
+  z-index: 99999!important;
+}
