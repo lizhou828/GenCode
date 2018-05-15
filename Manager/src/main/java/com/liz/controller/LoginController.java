@@ -19,7 +19,7 @@ public class LoginController {
     private final Logger logger = Logger.getLogger(this.getClass());
 
 
-    @RequestMapping(value = "/",name = "登陆页")
+    @RequestMapping(name = "登陆页")
     public String index(){
         return "/login";
     }

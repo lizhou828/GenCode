@@ -28,7 +28,7 @@
 </style>
 
 <div>
-	<div class="welcome"><img src="${ctx}/img/logo.png" style="height: 50px"/></div>
+	<div class="welcome"><img src="<%=ctx%>/img/logo.png" style="height: 50px"/></div>
 	<a class="northA" href="/login/logOut" class="exit">退出</a>
 	<a class="northA" href="javascript:void(0);" >${sessionScope.userName}</a>
 </div>

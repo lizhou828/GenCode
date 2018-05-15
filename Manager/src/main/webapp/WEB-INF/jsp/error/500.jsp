@@ -6,17 +6,19 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctx" value="${pageContext['request'].contextPath}"></c:set>
+<%
+    String ctx = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首营资质交换-500页面</title>
-    <link rel="stylesheet" href="${ctx }/css/base.css">
-    <link rel="stylesheet" href="${ctx }/css/common.css">
-    <link rel="stylesheet" href="${ctx }/css/icon.css">
+    <link rel="stylesheet" href="<%=ctx%>/css/base.css">
+    <link rel="stylesheet" href="<%=ctx%>/css/common.css">
+    <link rel="stylesheet" href="<%=ctx%>/css/icon.css">
     <style>
-        .container-bg {background: url('${ctx }/image/500.jpg') no-repeat top center;height: 955px;}
+        .container-bg {background: url('<%=ctx%>/image/500.jpg') no-repeat top center;height: 955px;}
     </style>
 </head>
 <body>
@@ -36,7 +38,7 @@
         <a href="#">联系我们</a>
         <a class="active" href="#">关于我们</a>
     </div>
-    <h1 class="logo"><a href="/"><img src="${ctx }/image/logo.png"></a></h1>
+    <h1 class="logo"><a href="/"><img src="<%=ctx%>/image/logo.png"></a></h1>
     <div style="display: none">
         ${ex}
     </div>

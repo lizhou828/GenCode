@@ -1,20 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 $(document).ready(function(){
-    var menuTree = [];
-    if(type == 1){
-        //登录后,判断当前帐号类型,如果为监管端帐号,就只显示"档案管理"和"资料交换"菜单
-        menuTree = [{
-            text: '档案管理',
-            state: 'open',
-            href:'archive/index.html'
-        },{
-            text: '资料交换',
-            state: 'open',
-            href:'task/index'
-        }];
-    }else{
-        menuTree = [{
+
+    var  menuTree = [{
             text: '消息提醒<span id="messageRemind"></span>',
             state: 'open',
             href:'sysMessage/index'
@@ -35,7 +23,7 @@ $(document).ready(function(){
             state: 'open',
             children:[{text:'用户管理',href:'admin/index'},{text:'角色管理',href:'role/index'},{text:'数据字典',href:'productDict/index'},{text:'操作日志',href:'logs/index'},{text:'非法词汇管理',href:'illegalwords/index'}]
         }];
-    }
+
     $("#menuTree").tree({
         data:menuTree
     });

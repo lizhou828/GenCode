@@ -8,15 +8,17 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  isELIgnored="false" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctx" value="<%=request.getContextPath()%>"/>
+<%
+    String ctx = request.getContextPath();
+%>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>电子资料交换平台ctx=${ctx}</title>
-    <jsp:include page="common/easyui.jsp">
+    <title>电子资料交换平台</title>
+    <%@include file="common/easyui.jsp"%>
     <script type="text/javascript">
-        var type = "${sessionScope.type}";
+
         $(document).ready(function () {
             $("#westMenu ul").tree({
                 onClick: function (node) {//判断是否是叶子节点
@@ -59,16 +61,19 @@
 <body class="easyui-layout">
 <!-- North -->
 <div class="header" data-options="region:'north',border:false" style="height:60px;background:#ffffff;">
-    <jsp:include page="module/north.jsp"/>
+        <%@include file="module/north.jsp"%>
+    <%--<jsp:include page="module/north.jsp" />--%>
 </div>
 <!-- West -->
 <div id="westMenu" title="收起" data-options="region:'west',split:true" style="width:11%; min-width:165px;">
-    <jsp:include page="module/west.jsp"/>
+        <%@include file="module/west.jsp"%>
+    <%--<jsp:include page="module/west.jsp"/>--%>
 </div>
 <!-- Center -->
 <div data-options="region:'center'">
     <div id="tabsCenter" class="easyui-tabs" data-options="fit:true,border:false">
-        <jsp:include page="module/center.jsp"/>
+        <%@include file="module/center.jsp"%>
+        <%--<jsp:include page="module/center.jsp"/>--%>
     </div>
 </div>
 <!-- East -->
