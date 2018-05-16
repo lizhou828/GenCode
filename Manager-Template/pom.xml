@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>liz-manager-template</artifactId>
     <packaging>war</packaging>
-    <name>liz-manager-template Maven Webapp</name>
+    <name>liz-manager-template</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>

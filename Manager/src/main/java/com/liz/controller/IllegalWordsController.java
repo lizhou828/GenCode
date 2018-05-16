@@ -36,6 +36,12 @@ public class IllegalWordsController {
     @Autowired
     private IllegalWordsService illegalWordsService;
 
+
+    @RequestMapping(value = "index",name = "首页")
+    public String index() {
+        return "/illegalwords/index";
+    }
+
     /**
      * 通过主键查询实体对象
      * 请求方式：http://localhost:8080/illegalWords/getByPK/44
@@ -46,6 +52,16 @@ public class IllegalWordsController {
     public IllegalWords getByPK(@PathVariable("key") Integer key) throws Exception {
         return illegalWordsService.getByPK(key);
     }
+
+//    @ResponseBody
+//    @RequestMapping(value = "search",name = "分页查询")
+//    public Map<String, Object> search(IllegalWords record) {
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("content", record.getContent());
+//        map.put("status", record.getStatus());
+//        PageInfoBean page = illegalWordsService.searchPage(record, map);
+//        return setDataGrid(page);
+//    }
 
     /**
      * 分页查询记录
@@ -86,6 +102,13 @@ public class IllegalWordsController {
     public void update(@RequestBody IllegalWords illegalWords) throws Exception {
         illegalWordsService.update(illegalWords);
     }
+
+//    private Map<String,Object> setDataGrid(PageInfoBean pageInfoBean){
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("total",pageInfoBean.getTotalOfData());
+//        map.put("rows",pageInfoBean.getList());
+//        return map;
+//    }
 
 }
 
