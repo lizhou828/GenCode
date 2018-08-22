@@ -3,7 +3,7 @@
 package ${basepackage}.service;
 
 
-import com.liz.mapper.GenericIBatisMapper;
+import ${basepackage}.GenericIBatisMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
