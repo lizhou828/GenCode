@@ -1,5 +1,6 @@
 package com.liz.springboot.service;
 
+import com.github.pagehelper.PageHelper;
 import com.liz.springboot.ApplicationTests;
 import com.liz.springboot.model.RemiseNotice;
 import org.apache.logging.log4j.LogManager;
@@ -48,13 +49,24 @@ public class RemiseNoticeServiceTest extends ApplicationTests {
         RemiseNotice remiseNotice = new RemiseNotice();
         remiseNotice.setType(3);
         List<RemiseNotice> listPage = remiseNoticeService.listByProperty(remiseNotice);
-        System.out.println(listPage);
+        log.info(listPage);
     }
 
     @Test
     public void findNoticeWithoutDetailTest(){
         List<RemiseNotice> remiseNoticeList = remiseNoticeService.findNoticeWithoutDetail();
         System.out.println(remiseNoticeList);
+    }
+
+    @Test
+    public void pageQueryTest(){
+        RemiseNotice remiseNotice = new RemiseNotice();
+        remiseNotice.setType(3);
+
+        PageHelper.startPage(2, 2);//设置分页,紧接着查询语句才能生效
+        List<RemiseNotice> listPage = remiseNoticeService.listByProperty(remiseNotice);
+
+        log.info(listPage);
     }
 
 
