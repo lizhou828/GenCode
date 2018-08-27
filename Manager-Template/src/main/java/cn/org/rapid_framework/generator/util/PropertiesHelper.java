@@ -27,7 +27,7 @@ public class PropertiesHelper {
 	public String getRequiredProperty(String key) {
 		String value = getProperty(key);
 		if(value == null || "".equals(value.trim())) {
-			throw new IllegalStateException("required property is blank by key="+key);
+			System.out.println("required property is blank by key=" + key);
 		}
 		return value;
 	}

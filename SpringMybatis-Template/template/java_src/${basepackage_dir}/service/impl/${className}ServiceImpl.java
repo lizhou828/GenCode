@@ -2,7 +2,7 @@
 <#assign className = table.className>
 <#assign classNameLower = className?uncap_first>
 
-package com.liz.service.impl;
+package ${basepackage}.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -11,7 +11,7 @@ import ${basepackage}.mapper.${className}Mapper;
 import ${basepackage}.model.${className};
 import java.util.List;
 
-import com.liz.service.${className}Service;
+import ${basepackage}.service.${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

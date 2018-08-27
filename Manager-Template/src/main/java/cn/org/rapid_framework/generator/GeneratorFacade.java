@@ -105,16 +105,33 @@ public class GeneratorFacade {
 		Generator g = new Generator();
 		String templatePath = applicationPath + "/template";
 		g.setTemplateRootDir(new File(templatePath).getAbsoluteFile());
-		g.setOutRootDir(GeneratorProperties.getRequiredProperty("outRoot"));
+		g.setOutRootDir(this.getOutRootDir());
 		return g;
 	}
 	
 	private Generator createGeneratorForJavaClass() {
 		Generator g = new Generator();
 		g.setTemplateRootDir(new File("template/javaclass").getAbsoluteFile());
-		g.setOutRootDir(GeneratorProperties.getRequiredProperty("outRoot"));
+		g.setOutRootDir(this.getOutRootDir());
 		return g;
 	}
+
+	/**
+	 * 获取输出的路径
+	 * 1、先判断generator.properties文件中是否有指定outRoot的值
+	 * 		如果有，则用指定的
+	 * 	2、如果没有，则用默认的值
+	 * @return
+     */
+	private String getOutRootDir(){
+		String outRootDir = GeneratorProperties.getRequiredProperty("outRoot");
+		if(null != outRootDir && !"".equals(outRootDir) && !"null".equalsIgnoreCase(outRootDir)){
+			return outRootDir;
+		}
+		return GeneratorUtil.getGenCodeDirFileName();
+	}
+
+
 
 	/**
 	 * 获取当前项目的根路径

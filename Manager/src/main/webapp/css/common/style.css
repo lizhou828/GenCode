@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+/**文件上传、预览等*/
+.fsFileView div{margin:2px;width:136px; height:132px; border:1px solid #ccc;color:#444; background:#fafafa; display:block; float:left;}
+.fsFileView div img{margin:0px 2px 2px 2px; width:130px; height:130px;}
+.fsFileView div span{margin-top:-132px; margin-right:0px; width:100%;height:18px;line-height:18px;text-align:right;vertical-align:middle; font-size:12px;background-color:rgb(235, 243, 255); display:block;position:relative;cursor:default;}
+.fsFileView div span a{margin:0 3px; text-decoration:none;}
+.indicator{width:10px;height:10px; font-size:9px; color:red;position:absolute; display:none;}

@@ -1,0 +1,27 @@
+.icon{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	vertical-align: middle;
+}
+
+.icon-call{
+	background-image: url(../image/icon-call.png)
+}
+.icon-login{
+	background-image: url(../image/icon-login.png)
+}
+.icon-register{
+	background-image: url(../image/icon-register.png)
+}
+.icon-user{
+	background-image: url(../image/icon-username.png)
+}
+.icon-password{
+	background-image: url(../image/icon-password.png)
+}
+.icon-verify-code{
+	background-image: url(../image/icon-verify-code.png)
+}
