@@ -138,4 +138,19 @@
         <include refid="commonCondition"/>
     </select>
 
+    <insert id="batchInsert" parameterType="${basepackage}.model.${className}">
+        insert into  ${tableName} ( <include refid="commonColumnsNotPK"/> )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+              <#list table.columns as column>
+                  <#if !column.pk>
+                        ${r"#{item." + column.columnNameLower + r"}"}<#if column_has_next>,</#if>
+                  </#if>
+              </#list>
+            )
+        </foreach>
+    </insert>
+
+
 </mapper>
