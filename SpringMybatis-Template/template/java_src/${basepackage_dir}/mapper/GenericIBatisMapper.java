@@ -7,9 +7,9 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * ÒµÎñµ×²ã ¹«¹²Mapper½Ó¿Ú
- * @param <T>  ÊµÌåÀà
- * @param <PK> Ö÷¼üÀàĞÍ
+ * ä¸šåŠ¡åº•å±‚ å…¬å…±Mapperæ¥å£
+ * @param <T>  å®ä½“ç±»
+ * @param <PK> ä¸»é”®ç±»å‹
  */
 public interface GenericIBatisMapper<T, PK extends Serializable> {
     int save(T var1);
